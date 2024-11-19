@@ -1,0 +1,89 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div><h1> Krishna</h1>
+    <div class="row">
+        <div class="col-2">
+        <label> Employee Name</label>
+        </div>
+        <div class="col-2">
+            <input type="text" class="form-control" id="txtname"  />
+        </div>
+        <div class="col-2">
+            <label> Employee Address</label>
+        </div>
+        <div class="col-2">
+            <input type="text" class="form-control" id="txtaddress" />
+        </div>
+
+     
+
+    </div>
+    <div class="row mb-2">
+        <div class="col-2">
+            <label> Employee Mail</label>
+        </div>
+        <div class="col-2">
+            <input type="text" class="form-control" id="txtmail" />
+        </div>
+        <div class="col-2">
+            <label> Employee Designation</label>
+        </div>
+        <div class="col-2">
+            <input type="text" class="form-control" id="txtdes" />
+        </div>
+
+       
+
+    </div>
+    <div>
+        <input type="button" class="btn btn-sm btn-primary " id="submit" value="Submit" />
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+<script type="text/javascript">
+
+   
+    $('#submit').on('click',function () {
+
+
+        let emp = {
+            EmployeeName: $('#txtname').val(),
+            EmployeeAddress: $('#txtaddress').val(),
+            EmpMail: $('#txtmail').val(),
+            Designation: $('#txtdes').val(),
+
+
+        }
+
+        console.log(emp)
+        $.ajax({
+            url: '/employee/insertemployee', // The URL to send the request to
+            type: 'Post', // The HTTP method to use for the request (GET, POST, etc.)
+            // Data to be sent to the server
+            dataType: 'json',
+            data: { emp:emp },
+          
+            async: true,
+            // The type of data expected back from the server
+            success: function (response) {
+                // Code to execute if the request succeeds
+                alert("insert succesfully" )
+            },
+            error: function (xhr, status, error) {
+                // Code to execute if the request fails
+                console.error(error);
+            }
+        });
+    }
+    );
+
+</script>
